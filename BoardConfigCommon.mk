@@ -68,8 +68,8 @@ BOARD_HAL_STATIC_LIBRARIES += libhealthd.msm8916
 
 # CMHW
 BOARD_HARDWARE_CLASS := \
-    hardware/cyanogen/cmhw \
-    $(VENDOR_PATH)/cmhw
+    hardware/mokee/mkhw \
+    $(VENDOR_PATH)/mkhw
 TARGET_TAP_TO_WAKE_NODE := "/sys/touch_screen/easy_wakeup_gesture"
 
 #Enable HW based full disk encryption
@@ -123,7 +123,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 an
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_DTBTOOL_ARGS := -2
 TARGET_KERNEL_SOURCE := kernel/huawei/msm8916
-TARGET_KERNEL_CONFIG := cyanogenmod_cherry_defconfig
+TARGET_KERNEL_CONFIG := mokee_cherry_defconfig
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
