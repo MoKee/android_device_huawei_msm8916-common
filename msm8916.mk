@@ -104,6 +104,9 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
+PRODUCT_COPY_FILES += \
+    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
+
 # Camera
 PRODUCT_PACKAGES += \
     mm-qcamera-app \
@@ -152,6 +155,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
     $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
     $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.gps.qc_nlp_in_use=1 \
+    ro.gps.agps_provider=1
 
 # IRSC
 PRODUCT_COPY_FILES += \

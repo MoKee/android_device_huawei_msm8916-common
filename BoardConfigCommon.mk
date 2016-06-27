@@ -39,6 +39,7 @@ TARGET_CPU_VARIANT := cortex-a53
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
+ENABLE_CPUSETS := true
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -151,6 +152,7 @@ TARGET_SYSTEM_PROP := $(VENDOR_PATH)/system.prop
 BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
+TARGET_RECOVERY_DEVICE_DIRS += $(VENDOR_PATH)
 #RECOVERY_VARIANT := twrp
 ifneq ($(RECOVERY_VARIANT),twrp)
 TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/recovery/recovery.fstab
@@ -163,7 +165,7 @@ TW_NEW_ION_HEAP := true
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_TARGET_USES_QCOM_BSP := true
 TW_EXTRA_LANGUAGES := true
-TW_INPUT_BLACKLIST := "accelerometer"
+TW_INPUT_BLACKLIST := "accelerometer\x0alis3dh-accel"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 endif
