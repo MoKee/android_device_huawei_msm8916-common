@@ -5,6 +5,7 @@
  *  for attribution purposes only.
  *
  * Copyright (C) 2012 The Android Open Source Project
+ * Copyright (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,15 +22,37 @@
 
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
-#define BTM_DEF_LOCAL_NAME   "QCOM-BTD"
+#include <cutils/properties.h>
+#include <string.h>
+
+static inline const char* BtmGetDefaultName()
+{
+	char product_model[PROPERTY_VALUE_MAX];
+	property_get("ro.product.model", product_model, "");
+
+	if (strstr(product_model, "C8817D"))
+		return "HUAWEI C8817D";
+	if (strstr(product_model, "C8817E"))
+		return "HUAWEI C8817E";
+	if (strstr(product_model, "G621-TL00"))
+		return "HUAWEI G621-TL00";
+	if (strstr(product_model, "G620S-UL00"))
+		return "HUAWEI G620S-UL00";
+	if (strstr(product_model, "G620S-L01"))
+		return "HUAWEI G620S-L01";
+	if (strstr(product_model, "G620S-L02"))
+		return "HUAWEI G620S-L02";
+	if (strstr(product_model, "Che1-CL10"))
+		return "HUAWEI Che1-CL10";
+	if (strstr(product_model, "Che1-CL20"))
+		return "HUAWEI Che1-CL20";
+	if (strstr(product_model, "Che1-L04"))
+		return "HUAWEI Che1-L04";
+
+	return "";
+}
+
+#define BTM_DEF_LOCAL_NAME BtmGetDefaultName()
 #define BLUETOOTH_QTI_SW TRUE
-// Disables read remote device feature
-#define BTA_SKIP_BLE_READ_REMOTE_FEAT FALSE
-#define MAX_ACL_CONNECTIONS    7
-#define MAX_L2CAP_CHANNELS    16
 #define BLE_VND_INCLUDED   TRUE
-// skips conn update at conn completion
-#define BTA_BLE_SKIP_CONN_UPD  FALSE
-#define BLE_PERIPHERAL_ADV_NAME  FALSE
-#define BT_CLEAN_TURN_ON_DISABLED 1
 #endif
