@@ -25,10 +25,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-on post-fs
-    # Symbols required for huawei blobs
-    export LD_SHIM_LIBS "/system/lib/libcutils.so|libshim_cutils.so:/system/bin/mm-qcamera-daemon|libqcamerasvr-c++.so"
-
 on boot
     # charger
     chown root system /sys/class/power_supply/bms/current_now
@@ -57,7 +53,7 @@ on boot
     chown nfc nfc /dev/pn544
 
 on post-fs
-    swapon_all /fstab.qcom
+    swapon_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/page-cluster 0
 
 on charger
@@ -69,28 +65,28 @@ on charger
     chmod 0664 /sys/class/power_supply/bms/voltage_ocv
     start vm_bms
 
-service vm_bms /system/bin/vm_bms
+service vm_bms /vendor/bin/vm_bms
     class core
     user root
     group root wakelock
     writepid /dev/cpuset/system-background/tasks
 
-service hw_test_diag /system/bin/hw_test_diag
+service hw_test_diag /vendor/bin/hw_test_diag
     class core
     user root
     writepid /dev/cpuset/system-background/tasks
 
-service rmt_oeminfo /system/bin/rmt_oeminfo
+service rmt_oeminfo /vendor/bin/rmt_oeminfo
     class core
     user root
     writepid /dev/cpuset/system-background/tasks
 
-service libqmi_oem_main /system/bin/libqmi_oem_main
+service libqmi_oem_main /vendor/bin/libqmi_oem_main
     class core
     user root
     writepid /dev/cpuset/system-background/tasks
 
-service oeminfo_server /system/bin/oeminfo_server
+service oeminfo_server /vendor/bin/oeminfo_server
     class core
     user root
     writepid /dev/cpuset/system-background/tasks
